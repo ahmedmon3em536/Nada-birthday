@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Nada! 🎂💗</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Cairo:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #fff5f7;
+            --card-bg: #ffffff;
+            --primary-pink: #ff6b81;
+            --secondary-pink: #ff8fab;
+            --accent-green: #2ed573;
+            --accent-blue: #1e90ff;
+            --accent-purple: #9b59b6;
+            --text-dark: #2d3436;
+            --shadow: 0 10px 30px rgba(255, 107, 129, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Fredoka', cursive, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Floating background doodles */
+        .bg-doodle {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.3;
+            animation: floatDoodle 6s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes floatDoodle {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(10deg); }
+        }
+
+        /* Main Container */
+        .container {
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Scenes */
+        .scene {
+            display: none;
+            width: 100%;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        .scene.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Scene 1: Envelope */
+        .envelope-card {
+            background: var(--card-bg);
+            border: 4px dashed var(--secondary-pink);
+            border-radius: 24px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            width: 100%;
+            position: relative;
+        }
+
+        .seal-badge {
+            width: 70px;
+            height: 70px;
+            background: var(--primary-pink);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0 auto 20px auto;
+            box-shadow: 0 5px 15px rgba(255, 107, 129, 0.4);
+            animation: pulseSeal 2s infinite;
+        }
+        @keyframes pulseSeal {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        .envelope-card h1 {
+            font-size: 22px;
+            color: var(--primary-pink);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .envelope-card p {
+            font-size: 16px;
+            color: #636e72;
+            margin-bottom: 25px;
+        }
+
+        /* Buttons */
+        .cute-btn {
+            background: linear-gradient(135deg, #ff6b81, #ff8fab);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 17px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255, 107, 129, 0.4);
+            transition: all 0.2s ease;
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .cute-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Scene 2: Card & Doodles */
+        .birthday-card-container {
+            background: var(--card-bg);
+            border-radius: 24px;
+            border: 3px solid #dfe6e9;
+            padding: 20px;
+            width: 100%;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+
+        .card-header-text {
+            font-size: 20px;
+            font-weight: bold;
+            background: linear-gradient(45deg, #1e90ff, #ff6b81, #2ed573);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .illustration-box {
+            background: #fff;
+            border: 2px dashed #fab1a0;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card-subtext {
+            font-size: 14px;
+            color: #636e72;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        /* Scene 3: Letter */
+        .letter-box {
+            background: #fffdf9;
+            border: 2px solid #f7d794;
+            border-radius: 20px;
+            padding: 25px 20px;
+            width: 100%;
+            box-shadow: var(--shadow);
+            position: relative;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .letter-content {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #2d3436;
+            white-space: pre-line;
+        }
+
+        .letter-content.arabic-mode {
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+            text-align: right;
+        }
+
+        /* Top Controls (Music & Translate) */
+        .top-controls {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .control-btn {
+            background: white;
+            border: 2px solid var(--secondary-pink);
+            color: var(--primary-pink);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.2s;
+        }
+        .control-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Confetti canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Background Doodles -->
+    <div class="bg-doodle" style="top: 10%; left: 8%;">✨</div>
+    <div class="bg-doodle" style="top: 20%; right: 10%;">💗</div>
+    <div class="bg-doodle" style="bottom: 15%; left: 12%;">🎂</div>
+    <div class="bg-doodle" style="bottom: 25%; right: 15%;">⭐</div>
+
+    <!-- Top Floating Controls -->
+    <div class="top-controls">
+        <button class="control-btn" id="lang-btn" onclick="toggleLanguage()">🌐 العربية</button>
+        <button class="control-btn" id="music-btn" onclick="toggleMusic()">🎵 Play Music</button>
+    </div>
+
+    <!-- Hidden Audio Element -->
+    <audio id="bg-music" loop>
+        <source src="https://actions.google.com/sounds/v1/ambiences/birthday_party.ogg" type="audio/ogg">
+    </audio>
+
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="container">
+
+        <!-- SCENE 1: ENVELOPE -->
+        <div class="scene active" id="scene-1">
+            <div class="envelope-card">
+                <div class="seal-badge">N</div>
+                <h1>ATTENTION!!! THIS ENVELOPE IS EXTREMELY IMPORTANT 😭❤️</h1>
+                <p>Special delivery for NADA 💌✨</p>
+                <button class="cute-btn" onclick="goToScene2()">OPEN IT ALREADY OMG 😭👉👈</button>
+            </div>
+        </div>
+
+        <!-- SCENE 2: BIRTHDAY CARD -->
+        <div class="scene" id="scene-2">
+            <div class="birthday-card-container">
+                <div class="card-header-text">HAPPIEST BIRTHDAY TO THE BIRTHDAY GIRL EVER!!! 🥳🎂💗</div>
+                
+                <div class="illustration-box">
+                    <!-- Exact Vector Recreation of Flork Card -->
+                    <svg viewBox="0 0 300 240" width="100%" height="auto">
+                        <!-- Card Background Header -->
+                        <text x="15" y="35" font-family="'Fredoka', cursive" font-size="28" font-weight="bold" fill="#00b894" stroke="#000" stroke-width="0.5">HAPPY</text>
+                        <text x="110" y="35" font-family="'Fredoka', cursive" font-size="28" font-weight="bold" fill="#0984e3" stroke="#000" stroke-width="0.5">BIRTHDAY</text>
+                        <text x="95" y="65" font-family="'Fredoka', cursive" font-size="26" font-weight="bold" fill="#e17055" stroke="#000" stroke-width="0.5">To You</text>
+                        
+                        <!-- Little Hearts / Stars top corners -->
+                        <path d="M 230 20 Q 235 12 242 20 Q 248 28 242 35 Z" fill="#ff7675"/>
+                        <path d="M 50 25 Q 54 18 60 25 Q 66 32 60 38 Z" fill="#fdcb6e"/>
+
+                        <!-- Flork Character Body -->
+                        <path d="M 120 180 C 110 130, 115 100, 140 90 C 165 80, 190 100, 185 140 C 182 170, 180 210, 175 220 C 170 225, 160 225, 155 210 C 150 190, 150 170, 145 150 C 140 180, 135 215, 128 220 C 122 225, 115 220, 120 180 Z" fill="#ffffff" stroke="#2d3436" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                        
+                        <!-- Blushed Cheeks -->
+                        <ellipse cx="132" cy="115" rx="8" ry="4" fill="#ff7675" opacity="0.7"/>
+                        <ellipse cx="172" cy="115" rx="8" ry="4" fill="#ff7675" opacity="0.7"/>
+
+                        <!-- Eyes & Smile -->
+                        <circle cx="140" cy="108" r="3.5" fill="#2d3436"/>
+                        <circle cx="164" cy="108" r="3.5" fill="#2d3436"/>
+                        <path d="M 146 118 Q 152 126 158 118" fill="none" stroke="#2d3436" stroke-width="3" stroke-linecap="round"/>
+
+                        <!-- Party Hat -->
+                        <polygon points="135,90 165,90 150,45" fill="#0984e3" stroke="#2d3436" stroke-width="3"/>
+                        <line x1="140" y1="75" x2="160" y2="75" stroke="#00b894" stroke-width="4"/>
+                        <line x1="143" y1="60" x2="157" y2="60" stroke="#ff7675" stroke-width="4"/>
+                        <circle cx="150" cy="42" r="5" fill="#fdcb6e" stroke="#2d3436" stroke-width="2"/>
+
+                        <!-- Left Hand holding Cupcake -->
+                        <path d="M 125 130 C 105 135, 90 145, 95 160" fill="none" stroke="#2d3436" stroke-width="4" stroke-linecap="round"/>
+                        <!-- Cupcake -->
+                        <path d="M 80 175 L 110 175 L 105 195 L 85 195 Z" fill="#0984e3" stroke="#2d3436" stroke-width="2"/>
+                        <ellipse cx="95" cy="173" rx="16" ry="7" fill="#ff7675" stroke="#2d3436" stroke-width="2"/>
+                        <!-- Candle -->
+                        <rect x="93" y="152" width="4" height="15" fill="#fdcb6e" stroke="#2d3436" stroke-width="1.5"/>
+                        <path d="M 95 142 Q 99 148 95 152 Q 91 148 95 142 Z" fill="#ff9f43"/>
+
+                        <!-- Right Hand holding Flowers -->
+                        <path d="M 178 135 C 195 140, 210 150, 205 165" fill="none" stroke="#2d3436" stroke-width="4" stroke-linecap="round"/>
+                        <!-- Flowers Bouquet -->
+                        <circle cx="200" cy="140" r="7" fill="#ff7675"/>
+                        <circle cx="212" cy="148" r="7" fill="#ff7675"/>
+                        <circle cx="195" cy="152" r="7" fill="#ff7675"/>
+                        <circle cx="210" cy="160" r="7" fill="#ff7675"/>
+                        <circle cx="200" cy="146" r="3" fill="#fdcb6e"/>
+                        <!-- Stems & Ribbon -->
+                        <line x1="200" y1="152" x2="205" y2="175" stroke="#00b894" stroke-width="3"/>
+                        <path d="M 198 165 Q 205 172 212 165" fill="none" stroke="#ff7675" stroke-width="3"/>
+
+                        <!-- Rainbow Underline -->
+                        <line x1="40" y1="225" x2="260" y2="225" stroke="#ff7675" stroke-width="4" stroke-linecap="round"/>
+                        <line x1="50" y1="232" x2="250" y2="232" stroke="#fdcb6e" stroke-width="4" stroke-linecap="round"/>
+                    </svg>
+                </div>
+
+                <div class="card-subtext">
+                    YES, THIS WEBSITE IS BEING THIS EXTRA JUST FOR YOU 😭<br>
+                    1000% MORE CONFETTI. NO REASON. 🎉
+                </div>
+
+                <button class="cute-btn" onclick="goToScene3()">OKAY THIS IS SO CRINGE 😂❤️</button>
+            </div>
+        </div>
+
+        <!-- SCENE 3: LETTER -->
+        <div class="scene" id="scene-3">
+            <div class="letter-box">
+                <div class="letter-content" id="letter-text">
+Happy birthday, Nadaaa!! 🎂💗😭
+
+I hope your day is filled with happiness, laughter, and beautiful memories, and that you always stay happy and achieve everything you wish for, because you deserve all the sweet things the world has to offer. ✨❤️
+
+Okay, this is probably the most extra birthday message in history 😂❤️, but I wanted to do something a little different for you.
+
+First of all, happy birthday again, Nada 🥹🎂❤️
+
+Honestly, I don't know what to say in situations like this, and this is the first time I've ever been in a situation like this, but I wanted to be honest with you and tell you what's on my mind.
+
+Even though the time I've spent getting to know you has been short, I've genuinely grown to care for you, and I felt that you're a special person to me. My admiration for you isn't just because of one specific thing, but because of who you are and your personality. ❤️
+
+And in the end, the choice is yours of course, and I will respect your decision no matter what. As for your studies, I'm sure I will never be an obstacle in your path; on the contrary, I will respect your time and priorities, and I don't want you to feel any pressure because of me.
+
+I won't lie to you, I really hope to hear the response I'm wishing for from you 🥺🫀🌹, but the most important thing to me is that you're happy and comfortable.
+
+Now go enjoy your birthday, eat some cake, laugh a lot, and make your new year the best year ever. 🥳🎂🌷
+
+Happy birthday agaiiin!!! 💗💗💗
+
+— A.mon3em ✨
+                </div>
+            </div>
+            <button class="cute-btn" onclick="restartExperience()">🔄 Start Over</button>
+        </div>
+
+    </div>
+
+    <script>
+        // Confetti Engine
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        function createConfetti() {
+            particles = [];
+            const colors = ['#ff6b81', '#ff8fab', '#1e90ff', '#2ed573', '#fdcb6e', '#9b59b6'];
+            for (let i = 0; i < 120; i++) {
+                particles.push({
+                    x: window.innerWidth / 2,
+                    y: window.innerHeight / 2,
+                    vx: (Math.random() - 0.5) * 14,
+                    vy: (Math.random() - 0.7) * 14 - 3,
+                    size: Math.random() * 8 + 4,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    rotation: Math.random() * 360,
+                    rotationSpeed: (Math.random() - 0.5) * 10
+                });
+            }
+        }
+
+        function updateConfetti() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach((p, index) => {
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.4; // gravity
+                p.rotation += p.rotationSpeed;
+                
+                ctx.save();
+                ctx.translate(p.x, p.y);
+                ctx.rotate((p.rotation * Math.PI) / 180);
+                ctx.fillStyle = p.color;
+                ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                ctx.restore();
+
+                if (p.y > canvas.height) {
+                    particles.splice(index, 1);
+                }
+            });
+            if (particles.length > 0) {
+                requestAnimationFrame(updateConfetti);
+            }
+        }
+
+        function triggerConfetti() {
+            createConfetti();
+            updateConfetti();
+        }
+
+        // Scene Navigation
+        function goToScene2() {
+            triggerConfetti();
+            document.getElementById('scene-1').classList.remove('active');
+            document.getElementById('scene-2').classList.add('active');
+        }
+
+        function goToScene3() {
+            triggerConfetti();
+            document.getElementById('scene-2').classList.remove('active');
+            document.getElementById('scene-3').classList.add('active');
+        }
+
+        function restartExperience() {
+            document.getElementById('scene-3').classList.remove('active');
+            document.getElementById('scene-1').classList.add('active');
+        }
+
+        // Music Toggle
+        const music = document.getElementById('bg-music');
+        let isPlaying = false;
+        function toggleMusic() {
+            const btn = document.getElementById('music-btn');
+            if (isPlaying) {
+                music.pause();
+                btn.innerText = "🎵 Play Music";
+                isPlaying = false;
+            } else {
+                music.play().catch(() => {});
+                btn.innerText = "⏸ Pause Music";
+                isPlaying = true;
+            }
+        }
+
+        // Translation Toggle (English <-> Arabic)
+        let isArabic = false;
+        const textEn = `Happy birthday, Nadaaa!! 🎂💗😭
+
+I hope your day is filled with happiness, laughter, and beautiful memories, and that you always stay happy and achieve everything you wish for, because you deserve all the sweet things the world has to offer. ✨❤️
+
+Okay, this is probably the most extra birthday message in history 😂❤️, but I wanted to do something a little different for you.
+
+First of all, happy birthday again, Nada 🥹🎂❤️
+
+Honestly, I don't know what to say in situations like this, and this is the first time I've ever been in a situation like this, but I wanted to be honest with you and tell you what's on my mind.
+
+Even though the time I've spent getting to know you has been short, I've genuinely grown to care for you, and I felt that you're a special person to me. My admiration for you isn't just because of one specific thing, but because of who you are and your personality. ❤️
+
+And in the end, the choice is yours of course, and I will respect your decision no matter what. As for your studies, I'm sure I will never be an obstacle in your path; on the contrary, I will respect your time and priorities, and I don't want you to feel any pressure because of me.
+
+I won't lie to you, I really hope to hear the response I'm wishing for from you 🥺🫀🌹, but the most important thing to me is that you're happy and comfortable.
+
+Now go enjoy your birthday, eat some cake, laugh a lot, and make your new year the best year ever. 🥳🎂🌷
+
+Happy birthday agaiiin!!! 💗💗💗
+
+— Ahmed Moneim ✨`;
+
+        const textAr = `عيد ميلاد سعيد يا ندىااا!! 🎂💗😭
+
+أتمنى إن يومك يكون مليان سعادة وضحك وذكريات جميلة، وإنك تفضلي دايمًا مبسوطة وتحققي كل اللي نفسك فيه، لأنك تستاهلي كل الحاجات الحلوة اللي الدنيا ممكن تقدمهالك. ✨❤️
+
+طيب، غالبًا دي أكتر رسالة عيد ميلاد أوفر في التاريخ 😂❤️، بس أنا كنت عايز أعملك حاجة مختلفة شوية.
+
+وفي الأول، كل سنة وإنتِ طيبة تاني يا ندى 🥹🎂❤️
+
+بصراحة، أنا مبعرفش أقول إيه في المواقف اللي زي دي، ودي أول مرة أتحط في موقف زي ده، بس أنا حابب أكون صريح معاكي وأقولك اللي جوايا.
+
+رغم إن الفترة اللي اتعاملت معاكي فيها كانت قصيرة، إلا إني حبيتك بجد، وحسيت إنك شخص مميز بالنسبالي، وإن إعجابي بيكي مش لمجرد أي حاجة فيكي، لكن علشان إنتِ نفسك وشخصيتك. ❤️
+
+وفي الآخر، القرار ليكي طبعًا، وأنا هحترم قرارك أيًّا كان. وبالنسبة للدراسة، فأنا متأكد إني عمري ما هكون عقبة في طريق دراستك، بالعكس، هحترم وقتك وأولوياتك، ومش عايزك تحسي بأي ضغط بسببي.
+
+مش هكدب عليكي، أنا بتمنى أسمع منك الرد اللي نفسي فيه 🥺🫀🌹، بس الأهم عندي إنك تكوني مبسوطة ومرتاحه.
+
+دلوقتي بقى، استمتعي بعيد ميلادك، وكلي تورتة، واضحكي كتير، وخلي سنتك الجديدة أحلى سنة على الإطلاق. 🥳🎂🌷
+
+عيد ميلاد سعيد تانييييي!!! 💗💗💗
+
+— أحمد منعم ✨`;
+
+        function toggleLanguage() {
+            const letterEl = document.getElementById('letter-text');
+            const langBtn = document.getElementById('lang-btn');
+            
+            if (isArabic) {
+                letterEl.innerText = textEn;
+                letterEl.classList.remove('arabic-mode');
+                langBtn.innerText = "🌐 العربية";
+                isArabic = false;
+            } else {
+                letterEl.innerText = textAr;
+                letterEl.classList.add('arabic-mode');
+                langBtn.innerText = "🌐 English";
+                isArabic = true;
+            }
+        }
+    </script>
+</body>
+</html>
